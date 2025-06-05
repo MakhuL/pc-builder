@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const pool = require('./db');
 
