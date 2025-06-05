@@ -1,0 +1,513 @@
+/* === Загальні стилі === */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #cfcfcf;
+  color: #333;
+  backdrop-filter: blur(4px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.app-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* === Контент === */
+.main-content {
+  flex: 1;
+  padding: 20px 40px;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  margin: 20px auto;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.05);
+  max-width: 1000px;
+  transition: background 0.3s ease;
+}
+
+.sidebar,
+.build-summary {
+  width: 340px;
+  margin-right: auto;         /* штовхає трохи вліво */
+  margin-left: 1px;          /* зменшує відстань від контенту */
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #333;
+  padding: 30px;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  transition: all 0.3s ease;
+}
+
+
+.dark-mode .build-summary {
+  background: linear-gradient(145deg, #2b2b2b, #1f1f1f);
+  color: #f1f1f1;
+}
+
+.build-summary h2,
+.compatibility-title,
+.build-title,
+.total-price {
+  color: inherit;
+}
+
+.success-msg {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.warning-list {
+  color: #f87171;
+  padding-left: 20px;
+  font-weight: 600;
+}
+
+h1.title {
+  font-size: 2rem;
+  margin-bottom: 24px;
+  font-weight: 600;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.selected-count {
+  font-size: 0.9em;
+  margin: 12px 0;
+  padding-top: 4px;
+  color: inherit;
+}
+
+/* === Темна тема === */
+.dark-mode {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.dark-mode .main-content {
+  background-color: rgba(40, 40, 40, 0.6);
+}
+
+/* === Категорії === */
+.category-header {
+  background-color: rgba(94, 108, 80, 0.3);
+  color: #5e6c50;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.category-header:hover {
+  background-color: rgba(94, 108, 80, 0.5);
+}
+
+/* === Компоненти === */
+.component-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.component-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background-color: #f3f3ee;
+}
+
+.component-item:hover {
+  background-color: #e3e3dc;
+}
+
+.dark-mode .component-item {
+  background-color: #2f2f2f;
+  border-color: #444;
+  color: #f1f1f1;
+}
+
+.dark-mode .component-item:hover {
+  background-color: rgba(90, 110, 90, 0.85);
+}
+
+.component-item.removing {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.selected-item {
+  border: 2px solid #6a7d4d;
+  background-color: #e8eee0;
+}
+
+/* === Кнопки === */
+.choose-button {
+  padding: 8px 16px;
+  background-color: #6a7d4d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.reset-button,
+.toggle-theme-button {
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  background-color: #6a7d4d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s;
+}
+
+.reset-button {
+  background-color: #8a4f4f;
+}
+
+.reset-button:hover {
+  background-color: #773c3c;
+}
+
+.toggle-theme-button {
+  background-color: #4e5b39;
+}
+
+.toggle-theme-button:hover {
+  background-color: #716542;
+}
+
+.remove-button {
+  margin-left: 10px;
+  background-color: #a95f3d;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.remove-button:hover {
+  background-color: #934b2b;
+}
+
+.total-price {
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: right;
+}
+
+.no-wrap {
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: inherit;
+}
+
+/* === Фільтри === */
+.filters input {
+  padding: 8px 12px;
+  margin: 6px 6px 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #222;
+  backdrop-filter: blur(4px);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filters input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.dark-mode .filters input {
+  background-color: rgba(40, 40, 40, 0.8);
+  border: 1px solid #555;
+  color: #f1f1f1;
+}
+
+.dark-mode .filters input::placeholder {
+  color: #bbb;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.dark-mode .sort-select {
+  background-color: rgba(40, 40, 40, 0.8);
+  border: 1px solid #555;
+  color: #f1f1f1;
+}
+
+@media (max-width: 1024px) {
+  .app-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-content {
+    width: 100%;
+    margin: 10px;
+    padding: 16px;
+  }
+
+  .build-summary {
+    position: static;
+    margin: 20px 16px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content,
+  .build-summary {
+    width: 95%;
+    padding: 12px;
+  }
+
+  .build-summary h2,
+  .build-title,
+  .total-price {
+    font-size: 1.1em;
+    text-align: left;
+  }
+
+  .reset-button,
+  .toggle-theme-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .filters input {
+    width: 100%;
+    margin: 6px 0;
+  }
+
+  .sort-select {
+    width: 100%;
+  }
+}
+
+/* Анімації при наведенні */
+button,
+.choose-button,
+.reset-button,
+.toggle-theme-button,
+.remove-button,
+.category-header,
+.component-item {
+  transition: all 0.2s ease;
+}
+
+button:hover,
+.choose-button:hover,
+.reset-button:hover,
+.toggle-theme-button:hover,
+.remove-button:hover,
+.category-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.sort-select {
+  padding: 8px 12px;
+  margin: 6px 6px 12px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #656565;
+  backdrop-filter: blur(4px);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.dark-mode .sort-select {
+  background-color: rgba(40, 40, 40, 0.8);
+  border: 1px solid #555;
+  color: #b2b2b2;
+}
+
+.dark-mode .sort-select option {
+  background-color: #2c2c2c;
+  color: #b2b2b2;
+}
+
+.build-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.build-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding-left: 0;
+}
+
+.build-list li span {
+  margin-left: 0;
+  font-size: 15px;
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d1d1d1;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+.dark-mode .login-container {
+  background-color: #1e1e1e;
+}
+
+.login-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.dark-mode .login-box {
+  background-color: rgba(30, 30, 30, 0.9);
+  color: #f1f1f1;
+}
+
+.login-box h2 {
+  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.login-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.login-form input {
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #e9edf5;
+  width: 180px;
+}
+
+.dark-mode .login-form input {
+  background-color: #333;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+.login-form button {
+  padding: 10px 18px;
+  font-size: 16px;
+  border: none;
+  background-color: #6a7d4d;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-form button:hover {
+  background-color: #5c6d3f;
+}
+
+.login-error {
+  color: #c00;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+.component-category input {
+  padding: 8px 12px;
+  margin: 6px 6px 12px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #222;
+  backdrop-filter: blur(4px);
+}
+
+.component-category input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.dark-mode .component-category input {
+  background-color: rgba(40, 40, 40, 0.8);
+  border: 1px solid #555;
+  color: #f1f1f1;
+}
+
+.dark-mode .component-category input::placeholder {
+  color: #bbb;
+}
+
+
